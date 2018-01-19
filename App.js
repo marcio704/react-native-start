@@ -1,38 +1,34 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { TabNavigator } from 'react-navigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, combineReduxers, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 
-import HomeScreen from 'AwesomeProject/src/scenes/home/index.js';
-import ProfileScreen from 'AwesomeProject/src/scenes/profile/index.js';
+import AppReducer from 'AwesomeProject/src/reducers/movies.js';
+import AppWithNavigationState from 'AwesomeProject/src/navigators/index.js';
 
-const RootTabs = TabNavigator({
-  Home: {
-    screen: HomeScreen,
-    navigationOptions: {
-      tabBarLabel: 'Home',
-      tabBarIcon: ({ tintColor, focused }) => (
-        <Ionicons
-          name={focused ? 'ios-home' : 'ios-home-outline'}
-          size={26}
-          style={{ color: tintColor }}
-        />
-      ),
-    },
-  },
-  Profile: {
-    screen: ProfileScreen,
-    navigationOptions: {
-      tabBarLabel: 'Profile',
-      tabBarIcon: ({ tintColor, focused }) => (
-        <Ionicons
-          name={focused ? 'ios-person' : 'ios-person-outline'}
-          size={26}
-          style={{ color: tintColor }}
-        />
-      ),
-    },
-  },
-});
+const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
 
-export default RootTabs;
+function configureStore(initialState) {
+  const enhancer = compose(
+    applyMiddleware(
+      thunkMiddleware,
+      loggerMiddleware,
+    ),
+  );
+  return createStore(AppReducer, initialState, enhancer);
+}
+
+class App extends React.Component {
+  store = configureStore({});
+
+  render() {
+    return (
+      <Provider store={this.store}>
+        <AppWithNavigationState />
+      </Provider>
+    );
+  }
+}
+
+export default App;

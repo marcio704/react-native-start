@@ -1,0 +1,1 @@
+export const YOUR_TYPE = 'YOUR_TYPE';
