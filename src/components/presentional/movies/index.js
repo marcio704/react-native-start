@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ListView, Text, View, StyleSheet } from 'react-native';
+import { ActivityIndicator, View, ListView, Text } from 'react-native';
+
+import styles from './styles';
 
 export default class Movies extends Component {
     render() {
@@ -21,11 +23,4 @@ export default class Movies extends Component {
       );
     }
   }
-  
-  const styles = StyleSheet.create({
-    movies: {
-        flex: 1,
-        paddingTop: 20
-    },
-  })
   

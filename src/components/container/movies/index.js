@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
 
-import Movies from 'AwesomeProject/src/components/presentional/index.js';
+import Movies from 'AwesomeProject/src/components/presentional/movies/index.js';
 
 export default class MoviesContainer extends Component {
   constructor(props) {
