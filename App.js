@@ -1,3 +1,5 @@
+import 'AwesomeProject/src/ReactotronConfig';
+import Reactotron from 'reactotron-react-native';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReduxers, compose } from 'redux';
@@ -16,13 +18,16 @@ function configureStore(initialState) {
       loggerMiddleware,
     ),
   );
-  return createStore(AppReducer, initialState, enhancer);
+  // return createStore(AppReducer, initialState, enhancer);
+  return Reactotron.createStore(AppReducer, enhancer)
 }
 
 class App extends React.Component {
   store = configureStore({});
 
   render() {
+    Reactotron.log('hello rendering world'); // Also possible Reactotron.warn, Reactotron.error, Reactotron.display
+
     return (
       <Provider store={this.store}>
         <AppWithNavigationState />
