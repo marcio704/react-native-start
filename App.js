@@ -6,8 +6,8 @@ import { createStore, applyMiddleware, combineReduxers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
-import AppReducer from 'AwesomeProject/src/reducers/movies.js';
-import AppWithNavigationState from 'AwesomeProject/src/navigators/index.js';
+import AppReducer from 'AwesomeProject/src/reducers';
+import AppWithNavigationState from 'AwesomeProject/src/navigators';
 
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
 
@@ -18,7 +18,6 @@ function configureStore(initialState) {
       loggerMiddleware,
     ),
   );
-  // return createStore(AppReducer, initialState, enhancer);
   return Reactotron.createStore(AppReducer, enhancer)
 }
 

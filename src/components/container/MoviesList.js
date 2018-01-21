@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { ListView } from 'react-native';
 
-import Movies from 'AwesomeProject/src/components/presentional/movies/index.js';
+import MoviesList from 'AwesomeProject/src/components/presentational/MoviesList';
 
-export default class MoviesContainer extends Component {
+export default class MoviesListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,13 +11,12 @@ export default class MoviesContainer extends Component {
   }
 
   componentDidMount() {
-    return fetch('https://facebook.github.io/react-native/movies.json')
+    return fetch('http://www.mocky.io/v2/5a6405022e0000f01111d8da')
       .then((response) => response.json())
       .then((responseJson) => {
-        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.setState({
           isLoading: false,
-          dataSource: ds.cloneWithRows(responseJson.movies),
+          movies: responseJson,
         }, function() {
           // do something with new state
         });
@@ -29,6 +27,6 @@ export default class MoviesContainer extends Component {
   }
 
   render() {
-    return <Movies state={ this.state }/>;
+    return <MoviesList state={ this.state }/>;
   }
 }

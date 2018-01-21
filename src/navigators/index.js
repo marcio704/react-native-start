@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers, TabNavigator, StackNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import HomeScreen from 'AwesomeProject/src/scenes/home.js';
-import ProfileScreen from 'AwesomeProject/src/scenes/profile.js';
-import LoginScreen from 'AwesomeProject/src/scenes/login.js';
+import HomeScreen from 'AwesomeProject/src/scenes/Home';
+import ProfileScreen from 'AwesomeProject/src/scenes/Profile';
+import LoginScreen from 'AwesomeProject/src/scenes/Login';
 
 export const MainNavigator =  TabNavigator ({
     Home: {
@@ -48,17 +48,17 @@ export const AppNavigator =  StackNavigator ({
 });
 
 
-const AppWithNavigationState = ({ dispatch, loginReducer }) => (
-  <AppNavigator navigation={ addNavigationHelpers({ dispatch, state: loginReducer }) } />
+const AppWithNavigationState = ({ dispatch, login }) => (
+  <AppNavigator navigation={ addNavigationHelpers({ dispatch, state: login }) } />
 );
 
 AppWithNavigationState.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  loginReducer: PropTypes.object.isRequired,
+  login: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-    loginReducer: state.loginReducer,
+    login: state.login,
 });
 
 export default connect(mapStateToProps)(AppWithNavigationState);
