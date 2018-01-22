@@ -11,7 +11,7 @@ export default class MoviesListContainer extends Component {
   }
 
   componentDidMount() {
-    return fetch('http://www.mocky.io/v2/5a6405022e0000f01111d8da')
+    return fetch('http://www.mocky.io/v2/5a6543362b0000cd19f414d7')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({

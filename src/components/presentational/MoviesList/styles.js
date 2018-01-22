@@ -4,6 +4,7 @@ import {colors, fonts, metrics} from 'AwesomeProject/src/styles'
 
 const styles = StyleSheet.create({
   container: {
+    height: '100%',
   },
   row: {
     flexDirection: 'row',
@@ -11,12 +12,13 @@ const styles = StyleSheet.create({
     paddingTop: metrics.padding,
     paddingBottom: metrics.padding,
     borderBottomWidth: 1,
-    borderColor: colors.lighter,
+    borderColor: colors.light,
   },
   image: {
     width: 100,
     height: 100,
     borderRadius: 50,
+    resizeMode: 'cover',
     marginRight: metrics.padding,
     marginLeft: metrics.padding,
   },
