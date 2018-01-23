@@ -1,1 +1,1 @@
-export const YOUR_TYPE = 'YOUR_TYPE';
+export const REQUEST_ERROR = 'REQUEST_ERROR';

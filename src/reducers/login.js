@@ -11,7 +11,7 @@ const initialState = AppNavigator.router.getStateForAction(NavigationActions.res
 	  }),
 	],
 }))
-const loginAction = AppNavigator.router.getActionForPathAndParams('Login');
+const loginAction = AppNavigator.router.getActionForPathAndParams('Main');
 const initialNavigationState = AppNavigator.router.getStateForAction(loginAction, initialState);
 
 export default function loginReducer(state = initialNavigationState, action) {
@@ -37,3 +37,4 @@ export default function loginReducer(state = initialNavigationState, action) {
   // Simply return the original `state` if `nextState` is null or undefined.
   return nextState || state;
 }
+
