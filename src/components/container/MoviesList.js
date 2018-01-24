@@ -1,29 +1,28 @@
+import Reactotron from 'reactotron-react-native';
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { bindActionCreators } from 'redux';
-import connect from 'react-redux-fetch';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import MoviesList from 'AwesomeProject/src/components/presentational/MoviesList';
 import { fetchMoviesFromAPI } from 'AwesomeProject/src/actions/movies';
-import { MOVIES_API_URL } from 'AwesomeProject/src/settings';
 
 class MoviesListContainer extends Component {
   
   componentDidMount() {
-    this.props.dispatchAllMoviesGet();
+    this.props.fetchMoviesFromAPI();
   }
   
   render() {
-    return <MoviesList movies={ this.props.allMoviesFetch } />;
+    return <MoviesList movies={ this.props.movies } isLoading={ this.props.isLoading } hasErrored={ this.props.hasErrored } />;
   }
 }
 
-/*
 const mapStateToProps = (state) => {
   return {
     isLoading: state.movies.isLoading,
-    movies: state.movies.all,
+    movies: state.movies.items,
+    hasErrored: state.movies.hasErrored,
   }
 };
 
@@ -32,12 +31,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesListContainer);
-*/
-
-export default connect([{
-  resource: 'allMovies',
-  method: 'get',
-  request: {
-      url: MOVIES_API_URL
-  }
-}])(MoviesListContainer);

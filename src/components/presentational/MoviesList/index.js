@@ -7,34 +7,38 @@ export default class MoviesList extends Component {
     render() {
       const { movies } = this.props;
 
-      if (movies.rejected) {
-        return <Text>Oops... Could not fetch Movies!</Text>
-      }
-
-      if (movies.fulfilled) {
+      if (this.props.isLoading) {
         return (
-          <FlatList
-            style={styles.container}
-            data={movies.value}
-            renderItem={({item}) =>
-            <View style={styles.row}>
-              <Image source={{ uri: item.image }}  style={styles.image} /> 
-              <View style={styles.textsContainer}>
-                <Text style={styles.title}> {item.title} </Text> 
-                <Text style={styles.description}> {item.description }</Text>
-              </View>
-            </View>}
-          />
+          <View style={styles.loaderContainer}>
+            <ActivityIndicator />
+          </View>
         );
       }
-      
-      // movies.pending
-      return (
-        <View style={styles.container}>
-          <ActivityIndicator />
-        </View>
-      );
+
+      if (this.props.hasErrored) {
+        return (
+          <View style={styles.exceptionContainer}>
+            <Text>Sorry! An unexpected error has occurred =(</Text>
+          </View>
+        );
       }
+
+      return (
+        <FlatList
+          style={styles.container}
+          data={movies}
+          renderItem={({item}) =>
+          <View style={styles.row}>
+            <Image source={{ uri: item.image }}  style={styles.image} /> 
+            <View style={styles.textsContainer}>
+              <Text style={styles.title}> {item.title} </Text> 
+              <Text style={styles.description}> {item.description }</Text>
+            </View>
+          </View>}
+        />
+      );
+      
+    }
   }
   
   

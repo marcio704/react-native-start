@@ -3,6 +3,15 @@ import { StyleSheet } from 'react-native';
 import {colors, fonts, metrics} from 'AwesomeProject/src/styles'
 
 const styles = StyleSheet.create({
+  exceptionContainer: {
+    height: '90%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loaderContainer: {
+    height: '90%',
+    justifyContent: 'center',
+  },
   container: {
     height: '100%',
   },

@@ -1,1 +1,1 @@
-export const  MOVIES_API_URL = 'http://www.mocky.io/v2/5a6543362b0000cd19f414d7';
+export const  MOVIES_API_URL = 'http://mocky.io/v2/5a6543362b0000cd19f414d7';

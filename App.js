@@ -4,9 +4,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReduxers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import ReduxPromise from 'redux-promise';
 import { createLogger } from 'redux-logger';
-import {middleware as fetchMiddleware} from 'react-redux-fetch';
 
 import AppReducer from 'AwesomeProject/src/reducers';
 import AppWithNavigationState from 'AwesomeProject/src/navigators';
@@ -16,7 +14,7 @@ const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__
 function configureStore(initialState) {
   const enhancer = compose(
     applyMiddleware(
-      fetchMiddleware,
+      thunkMiddleware,
       loggerMiddleware,
     ),
   );

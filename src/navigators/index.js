@@ -23,6 +23,7 @@ export const MainNavigator =  TabNavigator ({
             ),
         },
     },
+    
     Profile: {
         screen: ProfileScreen,
         navigationOptions: {
