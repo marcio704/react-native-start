@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import {colors, fonts, metrics} from 'AwesomeProject/src/styles'
+import {colors, fonts, metrics} from 'movies/src/styles'
 
 const styles = StyleSheet.create({
   exceptionContainer: {

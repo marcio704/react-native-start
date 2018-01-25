@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers, TabNavigator, StackNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import HomeScreen from 'AwesomeProject/src/scenes/Home';
-import ProfileScreen from 'AwesomeProject/src/scenes/Profile';
-import LoginScreen from 'AwesomeProject/src/scenes/Login';
+import HomeScreen from 'movies/src/scenes/Home';
+import ProfileScreen from 'movies/src/scenes/Profile';
+import LoginScreen from 'movies/src/scenes/Login';
 
 export const MainNavigator =  TabNavigator ({
     Home: {

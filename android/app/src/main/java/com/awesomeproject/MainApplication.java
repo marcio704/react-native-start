@@ -1,4 +1,4 @@
-package com.awesomeproject;
+package com.movies;
 
 import android.app.Application;
 

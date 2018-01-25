@@ -1,4 +1,4 @@
-import { FILTER_BY_TITLE, REQUEST_HAS_ERRORED, REQUEST_IS_LOADING, REQUEST_FETCH_DATA_SUCCESS } from 'AwesomeProject/src/actions/types';  
+import { REQUEST_IS_LOADING, REQUEST_FETCH_DATA_SUCCESS, REQUEST_HAS_ERRORED, FILTER_BY_TITLE  } from 'movies/src/actions/types';  
 
 initialState = {
     isLoading: true,
@@ -25,14 +25,15 @@ export default function moviesReducer(state=initialState, action) {
                 hasErrored: action.hasErrored,
             };
         case FILTER_BY_TITLE:
-            if (!action.title_filter) {
+            if (!action.text_filter) {
                 return {
                     ...state,
                     items: state.all_items,
                 };
             }
             const movies = state.all_items.reduce(function (res, movie) {
-                if (movie.title.indexOf(action.title_filter) >= 0) {
+                if (movie.title.toLowerCase().indexOf(action.text_filter.toLowerCase()) >= 0 || 
+                    movie.description.toLowerCase().indexOf(action.text_filter.toLowerCase()) >= 0) {
                     res.push(movie);
                 }
                 return res;

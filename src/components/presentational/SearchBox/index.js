@@ -4,28 +4,25 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import styles from './styles';
-import { filterMoviesByTitle } from 'AwesomeProject/src/actions/movies';
+import { filterMoviesByText } from 'movies/src/actions/movies';
 
 class SearchBox extends Component {
-
     render() {
         return (
             <TextInput
               style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-              onChangeText={(text) => this.props.filterMoviesByTitle({text})}
+              onChangeText={(text) => this.props.filterMoviesByText(text)}
             />
           );
-    }
+    };
 }
 
 const mapStateToProps = (state) => {
-    return {
-        title_filter: state.movies.title_filter,
-    }
+    return {};
   };
   
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ filterMoviesByTitle: filterMoviesByTitle }, dispatch);
+    return bindActionCreators({ filterMoviesByText: filterMoviesByText }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

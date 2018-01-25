@@ -4,8 +4,8 @@ import { Text } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import MoviesList from 'AwesomeProject/src/components/presentational/MoviesList';
-import { fetchMoviesFromAPI } from 'AwesomeProject/src/actions/movies';
+import MoviesList from 'movies/src/components/presentational/MoviesList';
+import { fetchMoviesFromAPI } from 'movies/src/actions/movies';
 
 class MoviesListContainer extends Component {
   
@@ -27,7 +27,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchMoviesFromAPI: fetchMoviesFromAPI }, dispatch);
+  return bindActionCreators({ fetchMoviesFromAPI }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesListContainer);

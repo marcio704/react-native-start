@@ -1,7 +1,7 @@
 import Reactotron from 'reactotron-react-native';
 
 import { ALL_MOVIES, FILTER_BY_TITLE, REQUEST_HAS_ERRORED, REQUEST_IS_LOADING, REQUEST_FETCH_DATA_SUCCESS } from './types';
-import { MOVIES_API_URL } from 'AwesomeProject/src/settings';
+import { MOVIES_API_URL } from 'movies/src/settings';
 
 // Action creators:
 export function requestIsLoading(bool) {
@@ -26,10 +26,9 @@ export function requestHasErrored(bool) {
 }
 
 export const filterMovies = (text) => {
-
     return {
         type: FILTER_BY_TITLE,
-        title_filter: text,
+        text_filter: text,
     }
 };
 
@@ -52,10 +51,10 @@ export function fetchMoviesFromAPI() {
 };
 
 
-export function filterMoviesByTitle(text) {
+export function filterMoviesByText(text) {
     return (dispatch) => {
         dispatch(requestIsLoading(true));
-        dispatch(filterMovies(text.text));
+        dispatch(filterMovies(text));
         dispatch(requestIsLoading(false));
     };
 };

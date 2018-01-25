@@ -1,4 +1,4 @@
-import 'AwesomeProject/src/ReactotronConfig';
+import 'movies/src/ReactotronConfig';
 import Reactotron from 'reactotron-react-native';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
@@ -6,8 +6,8 @@ import { createStore, applyMiddleware, combineReduxers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
-import AppReducer from 'AwesomeProject/src/reducers';
-import AppWithNavigationState from 'AwesomeProject/src/navigators';
+import AppReducer from 'movies/src/reducers';
+import AppWithNavigationState from 'movies/src/navigators';
 
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
 

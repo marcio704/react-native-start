@@ -1,6 +1,6 @@
 import { NavigationActions } from 'react-navigation';
 
-import { AppNavigator } from 'AwesomeProject/src/navigators/index.js';
+import { AppNavigator } from 'movies/src/navigators/index.js';
 
 // Start with two routes: The Main screen, with the Login screen on top.
 const initialState = AppNavigator.router.getStateForAction(NavigationActions.reset({

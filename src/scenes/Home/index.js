@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View } from 'react-native'
 
 import styles from './styles'
-import Header from 'AwesomeProject/src/components/presentational/Header';
-import MoviesListContainer from 'AwesomeProject/src/components/container/MoviesList';
-import SearchBox from 'AwesomeProject/src/components/presentational/SearchBox';
+import Header from 'movies/src/components/presentational/Header';
+import MoviesListContainer from 'movies/src/components/container/MoviesList';
+import SearchBox from 'movies/src/components/presentational/SearchBox';
 
 export default class HomeScreen extends Component {
     render() {
