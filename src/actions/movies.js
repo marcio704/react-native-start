@@ -40,13 +40,16 @@ export function fetchMoviesFromAPI() {
             .then((response) => {
                 dispatch(requestIsLoading(false));
                 if (!response.ok) {
-                    throw Error(response.statusText);
+                    throw Error(`An error occurred while requesting the API. Status: ${response.statusText}. Body: ${response.text()}`);
                 }
                 return response;
             })
             .then((response) => response.json())
             .then((items) => dispatch(requestFetchDataSuccess(items)))
-            .catch(() => dispatch(requestHasErrored(true)));
+            .catch((error) => {
+                Reactotron.error(error);
+                dispatch(requestHasErrored(true));
+            });
     };
 };
 

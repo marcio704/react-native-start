@@ -1,6 +1,6 @@
 import { NavigationActions } from 'react-navigation';
 
-import { AppNavigator } from 'movies/src/navigators/index.js';
+import { AppNavigator } from 'movies/src/navigator';
 
 const initialAuthState = { isLoggedIn: false };
 

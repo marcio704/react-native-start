@@ -7,7 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
 import AppReducer from 'movies/src/reducers';
-import AppWithNavigationState from 'movies/src/navigators';
+import AppWithNavigationState from 'movies/src/navigator';
 
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
 

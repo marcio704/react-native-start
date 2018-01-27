@@ -1,20 +1,10 @@
 import { NavigationActions } from 'react-navigation';
 
-import { AppNavigator } from 'movies/src/navigators/index.js';
+import { AppNavigator } from 'movies/src/navigator';
 
-// Start with two routes: The Main screen, with the Login screen on top.
-const initialState = AppNavigator.router.getStateForAction(NavigationActions.reset({
-	index: 0,
-	actions: [
-	  NavigationActions.navigate({
-		routeName: 'Main',
-	  }),
-	],
-}))
-const loginAction = AppNavigator.router.getActionForPathAndParams('Main');
-const initialNavigationState = AppNavigator.router.getStateForAction(loginAction, initialState);
+const initialState = AppNavigator.router.getStateForAction(NavigationActions.init());
 
-export default function loginReducer(state = initialNavigationState, action) {
+export default function navigatorReducer(state = initialState, action) {
   let nextState;
   switch (action.type) {
     case 'Login':

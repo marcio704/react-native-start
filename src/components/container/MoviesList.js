@@ -14,7 +14,7 @@ class MoviesListContainer extends Component {
   }
   
   render() {
-    return <MoviesList movies={ this.props.movies } isLoading={ this.props.isLoading } hasErrored={ this.props.hasErrored } />;
+    return <MoviesList movies={ this.props.movies } isLoading={ this.props.isLoading } hasErrored={ this.props.hasErrored } navigation={ this.props.navigation } />;
   }
 }
 

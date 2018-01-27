@@ -1,15 +1,12 @@
 import { combineReducers } from 'redux';
-import {reducer as fetchReducer} from 'react-redux-fetch';
 
-import loginReducer from './login';
 import authReducer from './auth';
 import moviesReducer from './movies';
+import navigatorReducer from './navigator';
 
 const AppReducer = combineReducers({
-    login: loginReducer,
-    auth: authReducer,
     movies: moviesReducer,
-    repository: fetchReducer,
+    nav: navigatorReducer
 });
 
 export default AppReducer;

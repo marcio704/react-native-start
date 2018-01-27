@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
+import { styles, nav_styles } from './styles';
+
 const ProfileScreen = ({ navigation }) => (
   <View style={styles.container}>
     <Text style={styles.instructions}>
@@ -19,21 +21,11 @@ ProfileScreen.propTypes = {
 };
 
 ProfileScreen.navigationOptions = {
-  title: 'Log Out',
+  tabBarLabel: 'Profile',
+  tabBarIcon: nav_styles.tabBarIcon,
+  title: 'Profile',
+  headerStyle: nav_styles.headerStyle,
+  headerTitleStyle: nav_styles.headerTitleStyle,
 };
 
 export default ProfileScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-});

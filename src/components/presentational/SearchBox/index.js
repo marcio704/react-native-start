@@ -9,10 +9,13 @@ import { filterMoviesByText } from 'movies/src/actions/movies';
 class SearchBox extends Component {
     render() {
         return (
-            <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-              onChangeText={(text) => this.props.filterMoviesByText(text)}
-            />
+            <View style={styles.container}>
+                <Image source={require('../../../resources/images/magnifying_glass.png')} style={styles.image} />
+                <TextInput
+                style={styles.textInput}
+                onChangeText={(text) => this.props.filterMoviesByText(text)}
+                />
+            </View>
           );
     };
 }
