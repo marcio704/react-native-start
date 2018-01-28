@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   container: {
-    height: '100%',
+    height: '90%',
   },
   row: {
     flexDirection: 'row',

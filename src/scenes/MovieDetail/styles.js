@@ -45,16 +45,3 @@ export const styles = StyleSheet.create({
       textAlign: 'justify',
     },
   });
-
-
-export const nav_styles = {
-  headerStyle: {
-      height: metrics.headerHeight,
-      paddingTop: metrics.headerPadding,
-      backgroundColor: '#2196F3',
-  },
-  headerTitleStyle: {
-      marginTop: metrics.headerPadding,
-      color: 'white',
-  },
-};

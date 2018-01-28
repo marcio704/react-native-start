@@ -34,5 +34,8 @@ export const nav_styles = {
     headerTitleStyle: {
         marginTop: metrics.headerPadding,
         color: 'white',
-    }
+    },
+    headerBackTitleStyle: {
+        color: 'white',
+    },
 };

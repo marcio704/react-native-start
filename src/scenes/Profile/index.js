@@ -23,7 +23,7 @@ ProfileScreen.propTypes = {
 ProfileScreen.navigationOptions = {
   tabBarLabel: 'Profile',
   tabBarIcon: nav_styles.tabBarIcon,
-  title: 'Profile',
+  headerTitle: 'Profile',
   headerStyle: nav_styles.headerStyle,
   headerTitleStyle: nav_styles.headerTitleStyle,
 };
