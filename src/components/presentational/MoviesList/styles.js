@@ -1,19 +1,19 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 import {colors, fonts, metrics} from 'movies/src/styles'
 
 const styles = StyleSheet.create({
   exceptionContainer: {
-    height: '90%',
+    height: metrics.containerHeight,
     justifyContent: 'center',
     alignItems: 'center',
   },
   loaderContainer: {
-    height: '90%',
+    height: metrics.containerHeight,
     justifyContent: 'center',
   },
   container: {
-    height: '90%',
+    height: metrics.containerHeight,
   },
   row: {
     flexDirection: 'row',

@@ -7,4 +7,8 @@ export default {
     android: { headerHeight: 44, headerPadding: 0 },
   }),
   tabBarHeight: 50,
+  containerHeight: Platform.select({ // Android buttons menu at the bottom makes the vertical space smaller than ios
+    ios: '90%',
+    android: '85%',
+  })
 };
