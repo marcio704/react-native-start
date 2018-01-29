@@ -15,7 +15,7 @@ export default styles = StyleSheet.create({
         marginRight: 5,
     },
     textInput: {
-        height: 30,
+        height: 45,
         width: '90%',
         borderRadius: 5,
         borderColor: colors.light,

@@ -31,13 +31,13 @@ export default function moviesReducer(state=initialState, action) {
                     items: state.all_items,
                 };
             }
-            const movies = state.all_items.reduce(function (res, movie) {
+            const movies = state.all_items ? state.all_items.reduce(function (res, movie) {
                 if (movie.title.toLowerCase().indexOf(action.text_filter.toLowerCase()) >= 0 || 
                     movie.description.toLowerCase().indexOf(action.text_filter.toLowerCase()) >= 0) {
                     res.push(movie);
                 }
                 return res;
-            }, []);
+            }, []) : [];
 
             return {
                 ...state,

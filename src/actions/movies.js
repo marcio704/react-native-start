@@ -1,4 +1,5 @@
 import Reactotron from 'reactotron-react-native';
+import axios from 'axios';
 
 import { ALL_MOVIES, FILTER_BY_TITLE, REQUEST_HAS_ERRORED, REQUEST_IS_LOADING, REQUEST_FETCH_DATA_SUCCESS } from './types';
 import { MOVIES_API_URL } from 'movies/src/settings';
@@ -36,16 +37,14 @@ export const filterMovies = (text) => {
 export function fetchMoviesFromAPI() {
     return (dispatch) => {
         dispatch(requestIsLoading(true));
-        fetch(MOVIES_API_URL)
+        axios.get(MOVIES_API_URL)
             .then((response) => {
                 dispatch(requestIsLoading(false));
-                if (!response.ok) {
+                if (!response.status === 200) {
                     throw Error(`An error occurred while requesting the API. Status: ${response.statusText}. Body: ${response.text()}`);
                 }
-                return response;
+                dispatch(requestFetchDataSuccess(response.data));
             })
-            .then((response) => response.json())
-            .then((items) => dispatch(requestFetchDataSuccess(items)))
             .catch((error) => {
                 Reactotron.error(error);
                 dispatch(requestHasErrored(true));

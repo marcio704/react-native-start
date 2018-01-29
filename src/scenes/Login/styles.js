@@ -10,7 +10,7 @@ export default styles = StyleSheet.create({
       backgroundColor: '#F5FCFF',
     },
     textInput: {
-      height: 30,
+      height: 40,
       width: '90%',
       borderRadius: 5,
       borderColor: colors.light,
