@@ -10,10 +10,10 @@ class SearchBox extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Image source={require('../../../resources/images/magnifying_glass.png')} style={styles.image} />
+                <Image source={require('movies/src/resources/images/magnifying_glass.png')} style={styles.image} />
                 <TextInput
-                style={styles.textInput}
-                onChangeText={(text) => this.props.filterMoviesByText(text)}
+                    style={styles.textInput}
+                    onChangeText={(text) => this.props.filterMoviesByText(text)}
                 />
             </View>
           );

@@ -22,7 +22,6 @@ export default styles = StyleSheet.create({
         borderWidth: 1,
         marginTop: metrics.padding,
         marginBottom: metrics.padding,
-        
     },
 
 });

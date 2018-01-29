@@ -1,42 +1,46 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View, TextInput } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-const LoginScreen = ({ navigation }) => (
-  <View style={styles.container}>
-    <Text style={styles.welcome}>
-      Screen A
-    </Text>
-    <Text style={styles.instructions}>
-      This is great
-    </Text>
-    <Button
-      onPress={() => navigation.dispatch({ type: 'Login' })}
-      title="Log in"
-    />
-  </View>
-);
+import styles from './styles';
+import { setLogin, setPassword } from 'movies/src/actions/login';
 
-LoginScreen.propTypes = {
-  navigation: PropTypes.object.isRequired,
+class LoginScreen extends Component {
+  static navigationOptions = {
+    title: 'Log In',
+  };
+
+  render() {
+    const { navigation } = this.props;
+
+    return (
+      <View style={styles.container}>
+        <TextInput 
+          style={[styles.textInput, styles.login]} 
+          placeholder="Login" 
+          onChangeText={ (text) => this.props.setLogin(text) } />
+        <TextInput 
+          style={[styles.textInput, styles.password]}
+          placeholder="Password"
+          onChangeText={ (text) => this.props.setPassword(text) }  />
+        <Button
+          onPress={ () => navigation.dispatch({ type: 'Login' }) }
+          title="Log in"
+        />
+      </View>
+    );
+  };
 };
 
-LoginScreen.navigationOptions = {
-  title: 'Log In',
+const mapStateToProps = (state) => {
+  return {
+  };
 };
 
-export default LoginScreen;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ setLogin, setPassword}, dispatch);
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-});
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

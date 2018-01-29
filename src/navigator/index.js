@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, TabNavigator, StackNavigator } from 'react-navigation';
+import { addNavigationHelpers, TabNavigator, StackNavigator, Platform } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from 'movies/src/scenes/Home';
@@ -13,7 +13,7 @@ import MovieDetailTrailerScreen from 'movies/src/scenes/MovieDetailTrailer';
 import { metrics, colors } from 'movies/src/styles';
 
 
-export const AppNavigator =  TabNavigator ({
+const MainNavigator =  TabNavigator ({
     Home: {
         screen: StackNavigator({
             MoviesList: {
@@ -31,9 +31,9 @@ export const AppNavigator =  TabNavigator ({
                 headerTitle: 'Movies',
                 tabBarIcon: ({ tintColor, focused }) => (
                     <Ionicons
-                    name={focused ? 'ios-home' : 'ios-home-outline'}
-                    size={26}
-                    style={{ color: tintColor }}
+                        name={focused ? 'ios-home' : 'ios-home-outline'}
+                        size={26}
+                        style={{ color: tintColor }}
                     />
                 ),
                 headerStyle: {
@@ -56,6 +56,19 @@ export const AppNavigator =  TabNavigator ({
         screen: ProfileScreen
     },
 });
+
+export const AppNavigator = StackNavigator({
+        Login: {
+            screen: LoginScreen,
+        },    
+        Main: {
+            screen: MainNavigator,
+        },  
+    },
+    { 
+        headerMode: 'none' // This avoids headers from this navigation Stack to be rendered.
+    }
+);
 
 const AppWithNavigationState = ({ dispatch, nav }) => (
   <AppNavigator navigation={ addNavigationHelpers({ dispatch, state: nav }) } />
