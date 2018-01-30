@@ -39,6 +39,7 @@ class LoginScreen extends Component {
           <Button 
             onPress={ () => navigation.dispatch({ type: 'Login' }) }
             title="Log in"
+            color='white'
           />
         </View>
       </View>

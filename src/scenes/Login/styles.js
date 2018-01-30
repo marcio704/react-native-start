@@ -43,6 +43,6 @@ export default styles = StyleSheet.create({
     loginButton: {
       width: '50%',
       borderRadius: 5,
-      backgroundColor: colors.lighter,
+      backgroundColor: '#2196F3',
     },
   });
