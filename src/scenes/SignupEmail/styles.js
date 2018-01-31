@@ -35,9 +35,6 @@ export default styles = StyleSheet.create({
       color: colors.regular,
       textAlign: 'center',
     },
-    facebook: {
-      marginTop: 100,
-    },
     textInputContainer: {
       width: '80%',
       marginTop: 100,
@@ -50,27 +47,35 @@ export default styles = StyleSheet.create({
       marginBottom: metrics.padding,
       backgroundColor: colors.lighter,
     },
-    login: {
-    },
-    password: {
-    },
-    loginButtonContainer: {
+    createAccountButtonContainer: {
       width: '100%',
       alignItems: 'center',
+      marginTop: metrics.padding,
     },
-    loginButton: {
+    createAccountButton: {
       width: '60%',
-      marginTop: 10,
       paddingTop: 20,
       paddingBottom: 20,
       backgroundColor: colors.primary,
       borderRadius: 10,
     },
-    loginButtonText: {
+    touchableAccount: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    createAccountImage: {
+      marginHorizontal: 5,
+      width: 36,
+      height: 36,
+      resizeMode: 'cover',
+    },
+    createAccountButtonText: {
       color: 'white',
       textAlign: 'center',
+      alignItems: 'center',
     },
-    signupText: {
+    loginText: {
       backgroundColor: 'transparent',
       color: colors.primary,
       paddingTop: metrics.padding,

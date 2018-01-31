@@ -38,39 +38,38 @@ export default styles = StyleSheet.create({
     facebook: {
       marginTop: 100,
     },
-    textInputContainer: {
-      width: '80%',
-      marginTop: 100,
+    middleTextContainer: {
+      paddingVertical: metrics.padding*2,
     },
-    textInput: {
-      height: 40,
-      borderRadius: 5,
-      borderColor: colors.light,
-      borderWidth: 1,
-      marginBottom: metrics.padding,
-      backgroundColor: colors.lighter,
+    middleText: {
+      fontSize: fonts.regular,
+      color: colors.regular,
     },
-    login: {
-    },
-    password: {
-    },
-    loginButtonContainer: {
+    emailButtonContainer: {
       width: '100%',
       alignItems: 'center',
     },
-    loginButton: {
+    emailButton: {
       width: '60%',
-      marginTop: 10,
       paddingTop: 20,
       paddingBottom: 20,
       backgroundColor: colors.primary,
       borderRadius: 10,
     },
-    loginButtonText: {
+    touchableEmail: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    emailImage: {
+      marginHorizontal: 5,
+    },
+    emailButtonText: {
       color: 'white',
       textAlign: 'center',
+      alignItems: 'center',
     },
-    signupText: {
+    loginText: {
       backgroundColor: 'transparent',
       color: colors.primary,
       paddingTop: metrics.padding,

@@ -10,7 +10,7 @@ import { colors, fonts, metrics } from 'movies/src/styles';
 import { setLogin, setPassword } from 'movies/src/actions/login';
 import FacebookLoginButton from 'movies/src/components/container/FacebookLoginButton';
 
-class LoginScreen extends Component {
+class SignupScreen extends Component {
   static navigationOptions = {
   };
 
@@ -32,32 +32,31 @@ class LoginScreen extends Component {
               style={ styles.topMessageImage }
               source={ require('movies/src/resources/images/movies_icon_small.png') }
             />
-            <Text style={ styles.topMessageText }>Login to know more about your favorite Movies!</Text>
+            <Text style={ styles.topMessageText }>Create your account and know more about your favorite Movies!</Text>
           </View>
           <View style={ styles.facebook }>
             <FacebookLoginButton navigation={ navigation } />
           </View>
-          <View style={ styles.textInputContainer }>
-            <TextInput 
-              style={[styles.textInput, styles.login]} 
-              placeholder="Login" 
-              onChangeText={ (text) => this.props.setLogin(text) } />
-            <TextInput 
-              style={[styles.textInput, styles.password]}
-              placeholder="Password"
-              onChangeText={ (text) => this.props.setPassword(text) }  />
+          <View style={ styles.middleTextContainer }>
+            <Text style={ styles.middleText }>OR</Text>
           </View>
-          <View style={ styles.loginButtonContainer }>
+          <View style={ styles.emailButtonContainer }>
             <TouchableHighlight 
               underlayColor={ colors.secondary }
-              style={ styles.loginButton }
-              onPress={ () => navigation.dispatch({ type: 'Login' }) }>
-              <Text style={ styles.loginButtonText }>LOG IN</Text>
+              style={ styles.emailButton }
+              onPress={ () => navigation.navigate('SignupEmail') }>
+              <View style={ styles.touchableEmail }>
+                <Image
+                  style={ styles.emailImage }
+                  source={ require('movies/src/resources/images/email_icon.png') }
+                />
+                <Text style={ styles.emailButtonText }>EMAIL ADDRESS</Text>  
+              </View>
             </TouchableHighlight >
             <TouchableHighlight
               underlayColor='transparent'
-              onPress={ () => navigation.navigate('Signup') }>
-                <Text style={ styles.signupText }> New to Movies? Sign up now. </Text>
+              onPress={ () => navigation.navigate('Login') }>
+                <Text style={ styles.loginText }>Already have an account? Log in now</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -76,4 +75,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ setLogin, setPassword}, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);

@@ -10,7 +10,7 @@ import { colors, fonts, metrics } from 'movies/src/styles';
 import { setLogin, setPassword } from 'movies/src/actions/login';
 import FacebookLoginButton from 'movies/src/components/container/FacebookLoginButton';
 
-class LoginScreen extends Component {
+class SignupEmailScreen extends Component {
   static navigationOptions = {
   };
 
@@ -22,7 +22,7 @@ class LoginScreen extends Component {
         <View style={ styles.header }>
           <TouchableHighlight
             underlayColor='transparent'
-            onPress={ () => navigation.navigate('Init') }>
+            onPress={ () => navigation.navigate('SignupInit') }>
               <Ionicons name='ios-arrow-back' size={ 24 } style={ styles.arrowBack } />
           </TouchableHighlight>
         </View>
@@ -32,32 +32,43 @@ class LoginScreen extends Component {
               style={ styles.topMessageImage }
               source={ require('movies/src/resources/images/movies_icon_small.png') }
             />
-            <Text style={ styles.topMessageText }>Login to know more about your favorite Movies!</Text>
-          </View>
-          <View style={ styles.facebook }>
-            <FacebookLoginButton navigation={ navigation } />
+            <Text style={ styles.topMessageText }>Create your account and know more about your favorite Movies!</Text>
           </View>
           <View style={ styles.textInputContainer }>
             <TextInput 
-              style={[styles.textInput, styles.login]} 
-              placeholder="Login" 
-              onChangeText={ (text) => this.props.setLogin(text) } />
+              style={ styles.textInput } 
+              placeholder="Email address" 
+              />
             <TextInput 
-              style={[styles.textInput, styles.password]}
+              style={ [styles.textInput, styles.password] }
               placeholder="Password"
-              onChangeText={ (text) => this.props.setPassword(text) }  />
+              />
+            <TextInput 
+              style={ styles.textInput } 
+              placeholder="Full Name" 
+              />
+            <TextInput 
+              style={ styles.textInput }
+              placeholder="Gender"
+              />
           </View>
-          <View style={ styles.loginButtonContainer }>
+          <View style={ styles.createAccountButtonContainer }>
             <TouchableHighlight 
               underlayColor={ colors.secondary }
-              style={ styles.loginButton }
-              onPress={ () => navigation.dispatch({ type: 'Login' }) }>
-              <Text style={ styles.loginButtonText }>LOG IN</Text>
+              style={ styles.createAccountButton }
+              onPress={ () => navigation.navigate('EmailSignup') }>
+              <View style={ styles.touchableAccount }>
+                <Image
+                  style={ styles.createAccountImage }
+                  source={ require('movies/src/resources/images/create_account_icon.png') }
+                />
+                <Text style={ styles.createAccountButtonText }>CREATE ACCOUNT</Text>  
+              </View>
             </TouchableHighlight >
             <TouchableHighlight
               underlayColor='transparent'
-              onPress={ () => navigation.navigate('Signup') }>
-                <Text style={ styles.signupText }> New to Movies? Sign up now. </Text>
+              onPress={ () => navigation.navigate('Login') }>
+                <Text style={ styles.loginText }>Already have an account? Log in now</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -76,4 +87,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ setLogin, setPassword}, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupEmailScreen);

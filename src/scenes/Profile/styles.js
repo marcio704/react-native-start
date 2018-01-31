@@ -29,7 +29,7 @@ export const nav_styles = {
     headerStyle: {
         height: metrics.headerHeight,
         paddingTop: metrics.headerPadding,
-        backgroundColor: '#2196F3',
+        backgroundColor: colors.primary,
     },
     headerTitleStyle: {
         marginTop: metrics.headerPadding,

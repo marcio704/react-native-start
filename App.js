@@ -21,7 +21,7 @@ function configureStore(initialState) {
   return Reactotron.createStore(AppReducer, enhancer)
 }
 
-class App extends React.Component {
+class App extends Component {
   store = configureStore({});
 
   render() {

@@ -5,13 +5,15 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers, TabNavigator, StackNavigator, Platform } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import HomeScreen from 'movies/src/scenes/Home';
-import MovieDetailScreen from 'movies/src/scenes/MovieDetail';
-import ProfileScreen from 'movies/src/scenes/Profile';
+import InitScreen from 'movies/src/scenes/Init';
 import LoginScreen from 'movies/src/scenes/Login';
+import SignupScreen from 'movies/src/scenes/Signup';
+import SignupEmailScreen from 'movies/src/scenes/SignupEmail';
+import HomeScreen from 'movies/src/scenes/Home';
+import ProfileScreen from 'movies/src/scenes/Profile';
+import MovieDetailScreen from 'movies/src/scenes/MovieDetail';
 import MovieDetailTrailerScreen from 'movies/src/scenes/MovieDetailTrailer';
 import { metrics, colors } from 'movies/src/styles';
-
 
 const MainNavigator =  TabNavigator ({
     Home: {
@@ -39,7 +41,7 @@ const MainNavigator =  TabNavigator ({
                 headerStyle: {
                     height: metrics.headerHeight,
                     paddingTop: metrics.headerPadding,
-                    backgroundColor: '#2196F3',
+                    backgroundColor: colors.primary,
                 },
                 headerTitleStyle: {
                     marginTop: metrics.headerPadding,
@@ -58,15 +60,31 @@ const MainNavigator =  TabNavigator ({
 });
 
 export const AppNavigator = StackNavigator({
+        Init: {
+            screen: InitScreen,
+        },    
         Login: {
             screen: LoginScreen,
-        },    
+        },
+        Signup: {
+            screen: StackNavigator({
+                SignupInit: {
+                    screen: SignupScreen
+                },
+                SignupEmail: {
+                    screen: SignupEmailScreen
+                },
+            },
+            { 
+                headerMode: 'none' // This avoids duplicated headers by not rendering this navigation Stack header.
+            }),
+        },
         Main: {
             screen: MainNavigator,
         },  
     },
     { 
-        headerMode: 'none' // This avoids headers from this navigation Stack to be rendered.
+        headerMode: 'none' // This avoids duplicated headers by not rendering this navigation Stack header.
     }
 );
 
