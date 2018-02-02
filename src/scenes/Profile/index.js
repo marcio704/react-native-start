@@ -1,31 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import { styles, nav_styles } from './styles';
+import { deleteStorageItem } from 'movies/src/actions/storage';
 
-const ProfileScreen = ({ navigation }) => (
-  <View style={styles.container}>
-    <Text style={styles.instructions}>
-      Click here to log out.
-    </Text>
-    <Button
-      onPress={() => navigation.dispatch({ type: 'Logout' })}
-      title="Logout"
-    />
-  </View>
-);
+class ProfileScreen extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'Profile',
+    tabBarIcon: nav_styles.tabBarIcon,
+    headerTitle: 'Profile',
+    headerStyle: nav_styles.headerStyle,
+    headerTitleStyle: nav_styles.headerTitleStyle,
+  };
 
-ProfileScreen.propTypes = {
-  navigation: PropTypes.object.isRequired,
+  render() {
+    const { navigate } = this.props;
+
+    return (
+      <View style={styles.container}>
+        <Text style={styles.instructions}>
+          Click here to log out.
+        </Text>
+        <Button
+          onPress={() => {
+            this.props.deleteStorageItem('loginState');
+            
+            //navigate.dispatch({ type: 'Logout' });
+            alert('Token deleted!');
+          }}
+          title="Logout"
+        />
+      </View>
+    );
+  };
 };
 
-ProfileScreen.navigationOptions = {
-  tabBarLabel: 'Profile',
-  tabBarIcon: nav_styles.tabBarIcon,
-  headerTitle: 'Profile',
-  headerStyle: nav_styles.headerStyle,
-  headerTitleStyle: nav_styles.headerTitleStyle,
+const mapStateToProps = (state) => {
+    return {
+    };
 };
 
-export default ProfileScreen;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ deleteStorageItem, }, dispatch);
+};
+  
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);

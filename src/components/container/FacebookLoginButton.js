@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class FacebookLoginButton extends Component {
+import { updateStorageItem } from 'movies/src/actions/storage';
+
+class FacebookLoginButton extends Component {
     constructor(props) {
         super(props);
     }
@@ -24,16 +28,31 @@ export default class FacebookLoginButton extends Component {
                         } else {
                             AccessToken.getCurrentAccessToken().then(
                                 (data) => {
-                                  alert(data.accessToken.toString())
+                                    this.props.updateStorageItem("loginState", 
+                                    { 
+                                        from: 'Facebook',
+                                        token: data.accessToken.toString()
+                                    });
                                 }
-                            )
-                            //alert("Login was successful with permissions: " + result.grantedPermissions);
+                            );
                             navigate('Main', {});
                         }
                     }
-            }
-            onLogoutFinished={ () => alert("User logged out") }
+                }
+                onLogoutFinished={ () => alert("User logged out") }
             />
         );
     }
 };
+
+const mapStateToProps = (state) => {
+    return {
+
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ updateStorageItem, }, dispatch);
+  };
+  
+export default connect(mapStateToProps, mapDispatchToProps)(FacebookLoginButton);

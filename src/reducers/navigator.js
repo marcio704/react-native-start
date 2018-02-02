@@ -8,8 +8,6 @@ export default function navigatorReducer(state = initialState, action) {
   let nextState;
   switch (action.type) {
     case 'Login':
-      Reactotron.log(state.login);
-      Reactotron.log(state.password);
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Main'}),
         state

@@ -11,7 +11,7 @@ import AppWithNavigationState from 'movies/src/navigator';
 
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
 
-function configureStore(initialState) {
+function configureStore(initialState={}) {
   const enhancer = compose(
     applyMiddleware(
       thunkMiddleware,
@@ -22,7 +22,7 @@ function configureStore(initialState) {
 }
 
 class App extends Component {
-  store = configureStore({});
+  store = configureStore();
 
   render() {
     Reactotron.log('Starting app...'); // Also possible Reactotron.warn, Reactotron.error, Reactotron.display
