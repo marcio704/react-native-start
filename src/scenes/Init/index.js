@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { TouchableHighlight, StyleSheet, Text, View, TextInput, Image } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { AccessToken } from 'react-native-fbsdk';
 
 import styles from './styles';
 import { colors, fonts, metrics } from 'movies/src/styles';
@@ -19,7 +20,12 @@ class InitScreen extends Component {
       key: 'loginState',
     })
     .then(ret => {
+        // TODO: Validate if token is still valid before logging user in (ret.token.expirationTime)
+        
         console.log(`User logged with token {ret.token}`);
+        // TODO: If it's all good:
+        // - Set current storage token (ret.token) on FB SDK with AccessToken.setCurrentAccessToken
+        // - Refresh token expiration date with AccessToken.refreshCurrentAccessTokenAsync
         navigation.navigate('Main');
     })
     .catch(err => {

@@ -31,7 +31,7 @@ class FacebookLoginButton extends Component {
                                     this.props.updateStorageItem("loginState", 
                                     { 
                                         from: 'Facebook',
-                                        token: data.accessToken.toString()
+                                        token: data
                                     });
                                 }
                             );
