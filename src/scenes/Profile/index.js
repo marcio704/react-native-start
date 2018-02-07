@@ -26,7 +26,7 @@ class ProfileScreen extends Component {
         </Text>
         <Button
           onPress={() => {
-            this.props.logout(navigation);
+            this.props.logout(navigation, 'Login');
           }}
           title="Logout"
         />

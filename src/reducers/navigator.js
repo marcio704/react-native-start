@@ -16,7 +16,7 @@ export default function navigatorReducer(state = initialState, action) {
       break;
     case 'Logout':
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Login' }),
+        NavigationActions.navigate({ routeName: action.destinity }),
         state
       );
       break;

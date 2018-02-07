@@ -10,29 +10,35 @@ import { colors, fonts, metrics } from 'movies/src/styles';
 import { setStorage } from 'movies/src/actions/storage';
 import getStorage from 'movies/src/Storage';
 import FacebookLoginButton from 'movies/src/components/container/FacebookLoginButton';
+import { logout } from 'movies/src/actions/login';
 
 class InitScreen extends Component {
   static navigationOptions = {
   };
 
-  getLoginStateAndProceed(storage, navigation) {
+  getLoginStateAndProceed(storage, navigation, logout) {
     storage.load({
       key: 'loginState',
     })
     .then(ret => {
-        // TODO: Validate if token is still valid before logging user in (ret.token.expirationTime)
-        console.log(`User logged with token {ret.token}`);
-        navigation.navigate('Main');
+        // Validates if token is still valid before logging user in:
+        if (Date.now() >= new Date(ret.token.expirationTime)) {
+          console.log('User could not be logged in cause the token has expired. Login again.');
+          logout(navigation, 'Login');
+        } else {
+          console.log(`User logged with token {ret.token}`);
+          navigation.navigate('Main');
+        }
     })
     .catch(err => {
         console.warn(err.message);
         switch (err.name) {
             case 'NotFoundError':
-            navigation.navigate('Init');
-                break;
+              logout(navigation, 'Init');
+              break;
             case 'ExpiredError':
-            navigation.navigate('Login');
-                break;
+              logout(navigation, 'Login');
+              break;
         }
     });
   };
@@ -41,7 +47,7 @@ class InitScreen extends Component {
     storage = getStorage();
     this.props.setStorage(storage);
 
-    this.getLoginStateAndProceed(storage, this.props.navigation);
+    this.getLoginStateAndProceed(storage, this.props.navigation, this.props.logout);
   };
 
   render() {
@@ -82,7 +88,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ setStorage, }, dispatch);
+  return bindActionCreators({ setStorage, logout }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(InitScreen);

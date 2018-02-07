@@ -51,11 +51,11 @@ export function loginWithFacebook(navigation) {
     };
 };
 
-export function logout(navigation) {
+export function logout(navigation, destinity) {
     return (dispatch) => {
         dispatch(deleteStorageItem(LOGIN_STATE_KEY)); // Remove token from local storage
         AccessToken.setCurrentAccessToken(null); // Set token as invalid on FBSDK (if any)
         
-        navigation.dispatch({ type: 'Logout' });
+        navigation.dispatch({ type: 'Logout', destinity }); // Redirects user to the desired destiny screen
     };
 };
