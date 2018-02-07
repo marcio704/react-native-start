@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { updateStorageItem } from 'movies/src/actions/storage';
+import { LOGIN_STATE_KEY } from 'movies/src/settings';
 
 class FacebookLoginButton extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class FacebookLoginButton extends Component {
                         } else {
                             AccessToken.getCurrentAccessToken().then(
                                 (data) => {
-                                    this.props.updateStorageItem("loginState", 
+                                    this.props.updateStorageItem(LOGIN_STATE_KEY, 
                                     { 
                                         from: 'Facebook',
                                         token: data

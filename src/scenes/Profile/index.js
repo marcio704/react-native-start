@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { styles, nav_styles } from './styles';
-import { deleteStorageItem } from 'movies/src/actions/storage';
+import { logout } from 'movies/src/actions/login';
 
 class ProfileScreen extends Component {
   static navigationOptions = {
@@ -17,7 +17,7 @@ class ProfileScreen extends Component {
   };
 
   render() {
-    const { navigate } = this.props;
+    const { navigation } = this.props;
 
     return (
       <View style={styles.container}>
@@ -26,10 +26,7 @@ class ProfileScreen extends Component {
         </Text>
         <Button
           onPress={() => {
-            this.props.deleteStorageItem('loginState');
-            
-            //navigate.dispatch({ type: 'Logout' });
-            alert('Token deleted!');
+            this.props.logout(navigation);
           }}
           title="Logout"
         />
@@ -44,7 +41,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ deleteStorageItem, }, dispatch);
+  return bindActionCreators({ logout, }, dispatch);
 };
   
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);

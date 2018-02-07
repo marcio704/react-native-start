@@ -21,11 +21,7 @@ class InitScreen extends Component {
     })
     .then(ret => {
         // TODO: Validate if token is still valid before logging user in (ret.token.expirationTime)
-        
         console.log(`User logged with token {ret.token}`);
-        // TODO: If it's all good:
-        // - Set current storage token (ret.token) on FB SDK with AccessToken.setCurrentAccessToken
-        // - Refresh token expiration date with AccessToken.refreshCurrentAccessTokenAsync
         navigation.navigate('Main');
     })
     .catch(err => {

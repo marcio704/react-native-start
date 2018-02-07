@@ -1,8 +1,9 @@
 import Reactotron from 'reactotron-react-native';
 import { NavigationActions } from 'react-navigation';
+
 import { AppNavigator } from 'movies/src/navigator';
 
-const initialState = AppNavigator.router.getStateForAction(NavigationActions.init());
+const initialState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: "Init" }));
 
 export default function navigatorReducer(state = initialState, action) {
   let nextState;
