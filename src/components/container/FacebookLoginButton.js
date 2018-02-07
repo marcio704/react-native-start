@@ -3,8 +3,7 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { updateStorageItem } from 'movies/src/actions/storage';
-import { LOGIN_STATE_KEY } from 'movies/src/settings';
+import { login } from 'movies/src/actions/login';
 
 class FacebookLoginButton extends Component {
     constructor(props) {
@@ -15,7 +14,7 @@ class FacebookLoginButton extends Component {
     }
     
     render () {
-        const { navigate } = this.props.navigation;
+        const { navigation } = this.props;
 
         return (
             <LoginButton
@@ -27,16 +26,7 @@ class FacebookLoginButton extends Component {
                         } else if (result.isCancelled) {
                             alert("Login was cancelled");
                         } else {
-                            AccessToken.getCurrentAccessToken().then(
-                                (data) => {
-                                    this.props.updateStorageItem(LOGIN_STATE_KEY, 
-                                    { 
-                                        from: 'Facebook',
-                                        token: data
-                                    });
-                                }
-                            );
-                            navigate('Main', {});
+                            this.props.login(navigation);
                         }
                     }
                 }
@@ -53,7 +43,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ updateStorageItem, }, dispatch);
+    return bindActionCreators({ login, }, dispatch);
   };
   
 export default connect(mapStateToProps, mapDispatchToProps)(FacebookLoginButton);

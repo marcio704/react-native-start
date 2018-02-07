@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-native';
 import { AccessToken } from 'react-native-fbsdk';
 
 import { CHANGE_LOGIN_TEXT, CHANGE_PASSWORD_TEXT } from './types';
-import { deleteStorageItem } from 'movies/src/actions/storage';
+import { updateStorageItem, deleteStorageItem } from 'movies/src/actions/storage';
 import { LOGIN_STATE_KEY } from 'movies/src/settings';
 
 // Action creators:
@@ -31,6 +31,23 @@ export function setLogin(text) {
 export function setPassword(text) {
     return (dispatch) => {
         dispatch(setPasswordText(text));
+    };
+};
+
+export function login(navigation) {
+    return (dispatch) => {
+        AccessToken.getCurrentAccessToken().then(
+            (data) => {
+                dispatch(
+                    updateStorageItem(LOGIN_STATE_KEY, 
+                    { 
+                        from: 'Facebook',
+                        token: data
+                    })
+                );
+            }
+        );
+        navigation.navigate('Main', {});
     };
 };
 
