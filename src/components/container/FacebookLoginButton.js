@@ -3,7 +3,7 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { login } from 'movies/src/actions/login';
+import { loginWithFacebook } from 'movies/src/actions/login';
 
 class FacebookLoginButton extends Component {
     constructor(props) {
@@ -22,11 +22,11 @@ class FacebookLoginButton extends Component {
                 onLoginFinished = {
                     (error, result) => {
                         if (error) {
-                            alert("Login failed with error: " + result.error);
+                            console.warn("Login failed with error: " + result.error);
                         } else if (result.isCancelled) {
-                            alert("Login was cancelled");
+                            console.log("Login was cancelled");
                         } else {
-                            this.props.login(navigation);
+                            this.props.loginWithFacebook(navigation);
                         }
                     }
                 }
@@ -43,7 +43,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ login, }, dispatch);
+    return bindActionCreators({ loginWithFacebook, }, dispatch);
   };
   
 export default connect(mapStateToProps, mapDispatchToProps)(FacebookLoginButton);

@@ -34,7 +34,7 @@ export function setPassword(text) {
     };
 };
 
-export function login(navigation) {
+export function loginWithFacebook(navigation) {
     return (dispatch) => {
         AccessToken.getCurrentAccessToken().then(
             (data) => {
@@ -54,7 +54,7 @@ export function login(navigation) {
 export function logout(navigation) {
     return (dispatch) => {
         dispatch(deleteStorageItem(LOGIN_STATE_KEY)); // Remove token from local storage
-        AccessToken.setCurrentAccessToken(null); // Set user as unlogged on FBSDK
+        AccessToken.setCurrentAccessToken(null); // Set token as invalid on FBSDK (if any)
         
         navigation.dispatch({ type: 'Logout' });
     };
