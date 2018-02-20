@@ -1,7 +1,4 @@
-import Reactotron from 'reactotron-react-native';
-import axios from 'axios';
-
-import { ALL_MOVIES, FILTER_BY_TITLE, REQUEST_HAS_ERRORED, REQUEST_IS_LOADING, REQUEST_FETCH_DATA_SUCCESS } from './types';
+import { ALL_MOVIES, FILTER_BY_TITLE, REQUEST_HAS_ERRORED, REQUEST_IS_LOADING, REQUEST_FETCH_DATA_SUCCESS, GET_NEXT_MOVIES_PAGE_FROM_API } from './types';
 import { MOVIES_API_URL } from 'movies/src/settings';
 
 // Action creators:
@@ -33,25 +30,19 @@ export const filterMovies = (text) => {
     }
 };
 
+export const getNextMoviesPage = (dispatch) => {
+    return {
+        type: GET_NEXT_MOVIES_PAGE_FROM_API,
+        dispatcher: dispatch
+    };
+}
+
 // Thunks:
-export function fetchMoviesFromAPI() {
+export function fetchNextMoviesPageFromAPI() {
     return (dispatch) => {
-        dispatch(requestIsLoading(true));
-        axios.get(MOVIES_API_URL)
-            .then((response) => {
-                dispatch(requestIsLoading(false));
-                if (!response.status === 200) {
-                    throw Error(`An error occurred while requesting the API. Status: ${response.statusText}. Body: ${response.text()}`);
-                }
-                dispatch(requestFetchDataSuccess(response.data));
-            })
-            .catch((error) => {
-                Reactotron.error(error);
-                dispatch(requestHasErrored(true));
-            });
+        dispatch(getNextMoviesPage(dispatch));
     };
 };
-
 
 export function filterMoviesByText(text) {
     return (dispatch) => {

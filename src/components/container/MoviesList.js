@@ -5,16 +5,16 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import MoviesList from 'movies/src/components/presentational/MoviesList';
-import { fetchMoviesFromAPI } from 'movies/src/actions/movies';
+import { fetchNextMoviesPageFromAPI } from 'movies/src/actions/movies';
 
 class MoviesListContainer extends Component {
   
   componentDidMount() {
-    this.props.fetchMoviesFromAPI();
+    this.props.fetchNextMoviesPageFromAPI();
   }
   
   render() {
-    return <MoviesList movies={ this.props.movies } isLoading={ this.props.isLoading } hasErrored={ this.props.hasErrored } navigation={ this.props.navigation } />;
+    return <MoviesList movies={ this.props.movies } isLoading={ this.props.isLoading } hasErrored={ this.props.hasErrored } navigation={ this.props.navigation } fetchNextMoviesPageFromAPI= { this.props.fetchNextMoviesPageFromAPI } />;
   }
 }
 
@@ -27,7 +27,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchMoviesFromAPI }, dispatch);
+  return bindActionCreators({ fetchNextMoviesPageFromAPI }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesListContainer);
